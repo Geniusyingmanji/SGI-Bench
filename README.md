@@ -137,17 +137,29 @@ Comming soon...
 
 ### Task 3.1 Dry Experiment (Code Generation)
 
+1. Install the environment dependencies for running the dry experiment code.
+
 ```bash
-cd task_1_deep_research
 conda create -n dryexp python=3.10.18
 conda activate dryexp
-pip install -r dry_experiment_requirements.txt
+pip install -r task_3_dry_experiment/dry_experiment_requirements.txt
+```
+
+2. Create code folder and initialize data (only need to run once).
+
+```bash
+conda activate sgi
 python task_3_dry_experiment/step_1_build.py
+```
+
+> Note: If some scripts time out during execution, please enter the corresponding folder and manually run the script to complete the data initialization.
+
+3. Start the evaluation.
+
+```bash
 conda activate sgi
 python task_3_dry_experiment/step_2_get_answer.py
-conda activate dryexp
 python task_3_dry_experiment/step_3_run_code.py
-conda activate sgi
 python task_3_dry_experiment/step_4_score.py
 ```
 

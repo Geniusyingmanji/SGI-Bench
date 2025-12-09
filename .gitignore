@@ -1,6 +1,6 @@
 .env
 logs
-codes
+codes*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

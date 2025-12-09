@@ -2,7 +2,6 @@ import os
 import json
 import subprocess
 import time
-from pathlib import Path
 import sys
 sys.path.append('./')
 from utils import multi_process
@@ -19,22 +18,20 @@ script_name = f"main_[{model_name.replace('/', '')}].py"
 def run_script(ques_dict):
     ques_dict['unit_test'] = []
     for unit_test_idx in range(5):
-        folder_path = os.path.join('./task_3_dry_experiment/codes', ques_dict['idx'], f"unit_test_{unit_test_idx}")
-
-        # Change to the target folder
         original_dir = os.getcwd()
-        os.chdir(folder_path)
-
-        # Changed this line to print the full path
-        # print(f"    Running {script_path_full}...")
+        folder_path = os.path.join('./task_3_dry_experiment/codes', ques_dict['idx'], f"unit_test_{unit_test_idx}")
+        unit_test_dict = {}
+        
         try:
+            # Change to the target folder
+            os.chdir(folder_path)
             # Run the script and capture output
             start_time = time.time()
             result = subprocess.run(
-                [sys.executable, script_name],
+                ["conda", "run", "-n", "dryexp", "python", script_name],
                 capture_output=True,
                 text=True,
-                timeout=300,  # 5-minute timeout
+                timeout=300,  # 5 minutes timeout
                 encoding="utf-8",
                 env=env
             )
@@ -42,7 +39,6 @@ def run_script(ques_dict):
             elapsed = end_time - start_time
             model_code_output = f"{result.stderr}\n{result.stdout}".strip()
 
-            unit_test_dict = {}
             if result.returncode == 0:
                 # print(f"✅")
                 unit_test_dict["model_error"] = "[No Error]"
@@ -61,14 +57,14 @@ def run_script(ques_dict):
             # print(f"      Error: Execution timed out after 5 minutes")
             unit_test_dict["model_error"] = "[WRONG]Execution timed out after 5 minutes"
             unit_test_dict["model_runtime"] = 300.0
-            unit_test_dict["model_returncode"] = -1 # 被终止
+            unit_test_dict["model_returncode"] = -1 # Terminated
             unit_test_dict["model_code_output"] = unit_test_dict["model_error"]
         except Exception as e:
             # print(f"❌")
             # print(f"      Error: {e}")
             unit_test_dict["model_error"] = "[WRONG]"+str(e)
             unit_test_dict["model_runtime"] = -1
-            unit_test_dict["model_returncode"] = 1 # 出错
+            unit_test_dict["model_returncode"] = 1 # Error
             unit_test_dict["model_code_output"] = unit_test_dict["model_error"]
 
         # Return to original directory
