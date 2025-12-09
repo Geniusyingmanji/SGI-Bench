@@ -76,11 +76,11 @@ for item in tqdm(dataset['test'], desc='Creating folder'):
             f.write(item["main_code"])
 
 
-shutil.copytree("task_3_dry_experiment/data/SGI_Code_0206", "task_3_dry_experiment/codes/SGI_Code_0206/unit_test_0/data/mnist_raw", dirs_exist_ok=True)
-shutil.copytree("task_3_dry_experiment/data/SGI_Code_0206", "task_3_dry_experiment/codes/SGI_Code_0206/unit_test_1/data/mnist_raw", dirs_exist_ok=True)
-shutil.copytree("task_3_dry_experiment/data/SGI_Code_0206", "task_3_dry_experiment/codes/SGI_Code_0206/unit_test_2/data/mnist_raw", dirs_exist_ok=True)
-shutil.copytree("task_3_dry_experiment/data/SGI_Code_0206", "task_3_dry_experiment/codes/SGI_Code_0206/unit_test_3/data/mnist_raw", dirs_exist_ok=True)
-shutil.copytree("task_3_dry_experiment/data/SGI_Code_0206", "task_3_dry_experiment/codes/SGI_Code_0206/unit_test_4/data/mnist_raw", dirs_exist_ok=True)
+shutil.copytree("task_3_dry_experiment/data/SGI_DryExperiment_0206", "task_3_dry_experiment/codes/SGI_DryExperiment_0206/unit_test_0/data/mnist_raw", dirs_exist_ok=True)
+shutil.copytree("task_3_dry_experiment/data/SGI_DryExperiment_0206", "task_3_dry_experiment/codes/SGI_DryExperiment_0206/unit_test_1/data/mnist_raw", dirs_exist_ok=True)
+shutil.copytree("task_3_dry_experiment/data/SGI_DryExperiment_0206", "task_3_dry_experiment/codes/SGI_DryExperiment_0206/unit_test_2/data/mnist_raw", dirs_exist_ok=True)
+shutil.copytree("task_3_dry_experiment/data/SGI_DryExperiment_0206", "task_3_dry_experiment/codes/SGI_DryExperiment_0206/unit_test_3/data/mnist_raw", dirs_exist_ok=True)
+shutil.copytree("task_3_dry_experiment/data/SGI_DryExperiment_0206", "task_3_dry_experiment/codes/SGI_DryExperiment_0206/unit_test_4/data/mnist_raw", dirs_exist_ok=True)
 
 all_results = multi_process(code_dir_list, run_script_in_folder, 100)
 
