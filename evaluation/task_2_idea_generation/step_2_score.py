@@ -639,10 +639,10 @@ class ImprovedIdeaEvaluator:
         
         return {
             "individual_scores": {
-                "novelty_objective": round(self.scores["novelty_objective"], 2),
-                "effectiveness_objective": round(self.scores["effectiveness_objective"], 2),
-                "feasibility_objective": round(self.scores["feasibility_objective"], 2),
-                "detailedness_objective": round(self.scores["detailedness_objective"], 2),
+                "novelty_objective": float(round(self.scores["novelty_objective"], 2)),
+                "effectiveness_objective": float(round(self.scores["effectiveness_objective"], 2)),
+                "feasibility_objective": float(round(self.scores["feasibility_objective"], 2)),
+                "detailedness_objective": float(round(self.scores["detailedness_objective"], 2)),
                 "novelty_subjective": self.scores["novelty_subjective"],
                 "effectiveness_subjective": self.scores["effectiveness_subjective"],  
                 "detailedness_subjective": self.scores["detailedness_subjective"],
